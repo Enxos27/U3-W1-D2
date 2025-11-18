@@ -7,7 +7,7 @@ function LibraryNavbar() {
   return (
     <Navbar expand="lg" bg="dark" data-bs-theme="dark">
       <Container fluid>
-        <Navbar.Brand href="#home">EpiLibrary</Navbar.Brand>
+        <Navbar.Brand href="#home" style={{color: "#32A852"}}>EpiLibrary</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
