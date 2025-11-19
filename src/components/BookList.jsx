@@ -15,7 +15,7 @@ class BookList extends Component {
     const originalBooks = this.props.books || [];
     const filteredBooks = originalBooks.filter((book) => {
         // Converte sia il titolo del libro che la stringa di ricerca in minuscolo 
-        // per rendere la ricerca case-insensitive (non fa distinzione tra maiuscole e minuscole)
+        // per far in modo che la ricerca non fa distinzione tra maiuscole e minuscole (case-insensitive)
         return book.title.toLowerCase().includes(this.state.search.toLowerCase());
     });
   return (
@@ -38,7 +38,7 @@ class BookList extends Component {
             {filteredBooks.map((libro) => {
 
             return (   
-                <SingleBook {...libro}> </SingleBook>
+                <SingleBook {...libro} key={libro.asin}> </SingleBook>
             ) 
            })}
       </Row>
