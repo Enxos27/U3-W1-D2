@@ -26,7 +26,7 @@ class BookList extends Component {
                     <Form.Control
                         type="text"
                         placeholder="Inserisci il titolo"
-                        // Collega il valore all'input al nostro stato
+                        // Collega il valore all'input allo stato
                         value={this.state.search}
                         // Aggiorna lo stato ogni volta che l'utente digita
                         onChange={(e) => this.setState({ search: e.target.value })}
