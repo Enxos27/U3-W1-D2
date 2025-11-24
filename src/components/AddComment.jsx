@@ -41,6 +41,20 @@ class AddComment extends Component {
       })
   } //Fine fetch
 
+  componentDidUpdate(prevProps) {
+    // Controllo se la prop bookId è effettivamente cambiata
+    if (prevProps.bookId !== this.props.bookId) {
+        
+        // Aggiorno elementId nello stato con il NUOVO bookId
+        this.setState({
+            newComment: {
+                ...this.state.newComment, // Mantieni comment e rate
+                elementId: this.props.bookId // Imposta il nuovo ID
+            }
+        });
+    }
+  }
+
  
   render() {
     const { newComment } = this.state;

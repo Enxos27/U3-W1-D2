@@ -38,7 +38,8 @@ class BookList extends Component {
             {filteredBooks.map((libro) => {
 
             return (   
-                <SingleBook {...libro} key={libro.asin}> </SingleBook>
+              // passo a single boock tutte le props di libro + la funzione per cambiare lo stato di app + se è selezionato o no, in base al confronto tra l'id selezionato in app e l'asin del libro
+                <SingleBook {...libro} key={libro.asin}  changeAppState={this.props.changeAppState} isSelected={this.props.selectedId === libro.asin}> </SingleBook>
             ) 
            })}
       </Row>
