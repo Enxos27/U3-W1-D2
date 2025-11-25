@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { Form, Button } from 'react-bootstrap'
 
 const AddComment = (props) => {
@@ -36,14 +36,6 @@ const AddComment = (props) => {
         console.log('Errore nella chiamata', err)
       })
   } //Fine fetch
-
-  useEffect(() => {
-    console.log("vediamo se entra due volte")
-    sendComment()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.bookId])
-
-
 
     return(
       
