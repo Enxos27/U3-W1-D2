@@ -1,24 +1,18 @@
 import { Container, Row, Form, Button } from "react-bootstrap" 
 import SingleBook from './SingleBook';
-import { Component } from 'react';
+import { useState} from 'react';
 
 
-class BookList extends Component {
-     constructor(props) {
-    super(props);
-  }
-  state = {
-    search : ''
-  } 
-
-  render() {
-    const originalBooks = this.props.books || [];
+const BookList = (props) => {
+  const [search, setSearch] = useState('')
+ const originalBooks = props.books || [];
     const filteredBooks = originalBooks.filter((book) => {
         // Converte sia il titolo del libro che la stringa di ricerca in minuscolo 
         // per far in modo che la ricerca non fa distinzione tra maiuscole e minuscole (case-insensitive)
-        return book.title.toLowerCase().includes(this.state.search.toLowerCase());
+        return book.title.toLowerCase().includes(search.toLowerCase());
     });
-  return (
+
+     return (
      <Container className="mt-3">
         <Row className="justify-content-center my-3">
                 <Form.Group controlId="formBasicEmail">
@@ -27,9 +21,9 @@ class BookList extends Component {
                         type="text"
                         placeholder="Inserisci il titolo"
                         // Collega il valore all'input allo stato
-                        value={this.state.search}
+                        value={search}
                         // Aggiorna lo stato ogni volta che l'utente digita
-                        onChange={(e) => this.setState({ search: e.target.value })}
+                        onChange={(e) => setSearch(e.target.value)}
                     />
                 </Form.Group>
             </Row>
@@ -39,13 +33,14 @@ class BookList extends Component {
 
             return (   
               // passo a single boock tutte le props di libro + la funzione per cambiare lo stato di app + se è selezionato o no, in base al confronto tra l'id selezionato in app e l'asin del libro
-                <SingleBook {...libro} key={libro.asin}  changeAppState={this.props.changeAppState} isSelected={this.props.selectedId === libro.asin}> </SingleBook>
+                <SingleBook {...libro} key={libro.asin}  changeAppState={props.changeAppState} isSelected={props.selectedId === libro.asin}> </SingleBook>
             ) 
            })}
       </Row>
       </Container>
   );
-}
-}
+
+
+  } 
 
 export default BookList;

@@ -1,22 +1,20 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap'
 
-class AddComment extends Component {
-  state = {
-    newComment: {
-      comment: '',
-      rate: '1', // Voto predefinito
-      elementId: this.props.bookId // L'ID del libro (ASIN)
-    }
-  };
+const AddComment = (props) => {
+    const [newComment, setNewComment] = useState({
+       comment: '',
+      rate: '1',
+      elementId: props.bookId 
+     })
 
-   sendComment = () => {
-     const URL = 'https://striveschool-api.herokuapp.com/api/comments/'
+   const sendComment = () => {
+        const URL = 'https://striveschool-api.herokuapp.com/api/comments/'
      
-    fetch(URL,
+        fetch(URL,
          {
         method: 'POST',
-          body: JSON.stringify(this.state.newComment),
+          body: JSON.stringify(newComment),
          headers: {
             'Content-Type': 'application/json',
              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTFmMGU4MjIzZTc0MDAwMTVmN2ZkYjIiLCJpYXQiOjE3NjM2NDMwMTAsImV4cCI6MTc2NDg1MjYxMH0.6BLdSJxayDJINHrg5qO77D3pYxo_AlIZMwKn4m2-F7s"
@@ -25,12 +23,10 @@ class AddComment extends Component {
       .then((response) => {
         if (response.ok) {
            alert('Commento inviato con successo!');
-            this.setState({
-                 newComment : {
+                   setNewComment({
                      comment: "",
                      rate : "1",
-                     elementId : this.props.bookId
-                              } 
+                     elementId : props.bookId
                    })
         } else {
           throw new Error('la chiamata non è ok: ' + response.status)
@@ -41,30 +37,20 @@ class AddComment extends Component {
       })
   } //Fine fetch
 
-  componentDidUpdate(prevProps) {
-    // Controllo se la prop bookId è effettivamente cambiata
-    if (prevProps.bookId !== this.props.bookId) {
-        
-        // Aggiorno elementId nello stato con il NUOVO bookId
-        this.setState({
-            newComment: {
-                ...this.state.newComment, // Mantieni comment e rate
-                elementId: this.props.bookId // Imposta il nuovo ID
-            }
-        });
-    }
-  }
+  useEffect(() => {
+    console.log("vediamo se entra due volte")
+    sendComment()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.bookId])
 
- 
-  render() {
-    const { newComment } = this.state;
+
 
     return(
-
+      
          <Form
               onSubmit={(e) => {
                 e.preventDefault()
-                this.sendComment()
+                sendComment()
               }}
               onClick={(e) => {
                 e.stopPropagation();
@@ -77,12 +63,10 @@ class AddComment extends Component {
                   placeholder="commento"
                   value={newComment.comment} // '' ???
                   onChange={(e) => {
-                    this.setState({
-                      newComment: {
-                        ...this.state.newComment, 
-                        comment: e.target.value, 
-                      },
-                    })
+                      setNewComment({
+                    ...newComment,
+                    comment: e.target.value,
+                  })
                   }}
                   required
                 />
@@ -94,11 +78,9 @@ class AddComment extends Component {
                   aria-label="number of stars"
                   value={newComment.rate}
                   onChange={(e) => {
-                    this.setState({
-                      newComment: {
-                        ...this.state.newComment, 
-                        rate: e.target.value
-                      },
+                    setNewComment({
+                      ...newComment,
+                      rate: e.target.value,
                     })
                   }}
                 >
@@ -113,9 +95,8 @@ class AddComment extends Component {
             </Form>
 
     )
-  }
+}
 
 //   Fine classe
-}
 
 export default AddComment
