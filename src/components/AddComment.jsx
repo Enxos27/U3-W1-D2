@@ -51,6 +51,7 @@ const AddComment = (props) => {
               <Form.Group className="mb-3">
                 <Form.Label>Aggiungi recensione</Form.Label>
                 <Form.Control
+                className='shadow-sm'
                   type="text"
                   placeholder="commento"
                   value={newComment.comment} // '' ???
@@ -67,6 +68,7 @@ const AddComment = (props) => {
               <Form.Group className="mb-3">
                 <Form.Label>Rate</Form.Label>
                 <Form.Select
+                 className='shadow-sm'
                   aria-label="number of stars"
                   value={newComment.rate}
                   onChange={(e) => {

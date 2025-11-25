@@ -38,15 +38,15 @@ const CommentArea = (props) => {
     // Se non è selezionato nessun libro, mostra un messaggio
     if (!props.bookId) {
         return (
-            <div className="comment-area mt-4 text-center">
+            <div className="comment-area text-center">
                 <h3>Seleziona un libro per le recensioni</h3>
             </div>
         );
     }
     return (
       // Mostra l'area dei commenti solo se è selezionato un libro
-      <div className="comment-area mt-4 position-sticky overflow-auto" style={{ top: "30px", maxHeight: "90vh" }}>
-        <h3>Recensioni</h3>
+      <div className="comment-area position-sticky overflow-auto shadow" style={{ top: "30px", maxHeight: "90vh" }}>
+        <h3>Valutazioni e recensioni</h3>
         <CommentsList comments={comments} /> 
         <AddComment bookId={props.bookId} />
       </div>

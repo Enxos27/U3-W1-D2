@@ -13,8 +13,8 @@ const BookList = (props) => {
     });
 
      return (
-     <Container className="mt-3">
-        <Row className="justify-content-center my-3">
+     <Container >
+        <Row className="justify-content-center mb-3">
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Cerca un libro per titolo</Form.Label>
                     <Form.Control

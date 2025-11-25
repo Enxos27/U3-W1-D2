@@ -1,9 +1,14 @@
+import Alert from 'react-bootstrap/Alert';
 
 const SingleComment = ({ comment }) => (
-  <div className="single-comment border p-2 mb-2">
-    <p>{comment.comment}</p>
-    <p>rate: {comment.rate}/5</p>
-  </div>
+  <Alert variant="secondary" className='shadow'>
+      <Alert.Heading >{comment.rate}/5</Alert.Heading>
+      
+      <hr />
+      <p className="mb-0">
+        {comment.comment} <br />
+      </p>
+    </Alert>
 );
 
 export default SingleComment

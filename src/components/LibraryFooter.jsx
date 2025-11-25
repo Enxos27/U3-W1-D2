@@ -4,7 +4,7 @@ function Footer() {
           <footer className="fixed-bottom bg-dark">
               <Container fluid>
                <Row className="text-white ">
-                 <p className="text-center"> Tutti i diritti sono riservati </p>
+                 <p className="text-center"> Tutti i diritti sono riservati <small>&copy; 2024</small></p>
                </Row>
             </Container>
           </footer>

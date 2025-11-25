@@ -17,7 +17,7 @@ const SingleBook = (props) => {
     return (
          <Col xs={6} md={4} lg={3} key={props.asin}  >
           <Card 
-          className= {"h-100" +  (isSelected ? ' border border-3 border-danger' : '')} 
+          className= {"h-100 shadow" +  (isSelected ? ' border border-3 border-danger' : '')} 
           onClick={gestioneClick}>
             <Card.Img variant="top" src={props.img} style={{ width: "100%", maxHeight: "300px" ,objectFit: 'cover' }} />
              <Card.Body>
